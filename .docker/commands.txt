@@ -1,0 +1,5 @@
+docker build -t testcicd:latest -f ./Dockerfile.TestCiCd ../
+docker compose -f docker-compose.local.yml up -d --remove-orphans --force-recreate
+
+http://localhost:5243/weatherforecast
+http://localhost:12113/weatherforecast

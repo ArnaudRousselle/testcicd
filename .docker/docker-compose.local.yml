@@ -1,0 +1,14 @@
+name: testcicd
+
+services:
+  testcicd-webapi:
+    image: testcicd:latest
+    ports:
+      - 12113:8080
+    networks:
+      - network1
+
+networks:
+  network1:
+    name: gitea_runners_default
+    external: true
