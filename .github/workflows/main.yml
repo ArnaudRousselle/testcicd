@@ -12,3 +12,18 @@ jobs:
     steps:
       - name: Récupération du code dans le repository
         uses: actions/checkout@v4
+
+      - name: Compilation TestCiCd
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        with:
+          context: .
+          file: .docker/Dockerfile.TestCiCd
+          load: true
+          tags: testcicd:latest
+
+      - name: Lancement du Compose
+        run: |
+          docker compose -f .docker/docker-compose.local.yml up -d --remove-orphans --force-recreate
+
+      - name: Attente de démarrage du site
+        run: npx wait-on http://localhost:12113/weatherforecast --timeout=30000 --verbose
