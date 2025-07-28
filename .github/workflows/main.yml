@@ -1,0 +1,15 @@
+name: Publish Docker image
+run-name: Docker image publisher
+
+on: push
+
+jobs:
+  build-and-push-images:
+    runs-on: ubuntu-latest
+
+    name: Publication
+
+    steps:
+      - name: Récupération du code dans le repository
+        uses: actions/checkout@v4
+          
